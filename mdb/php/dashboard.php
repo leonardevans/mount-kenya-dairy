@@ -12,7 +12,7 @@ if (isset($_POST['key'])) {
             $products = executer($sql);
             $totalproducts = count($products);
             // get blogs or posts
-            $sql = "SELECT * FROM blogs";
+            $sql = "SELECT * FROM posts";
             $posts = executer($sql);
             $totalposts = count($posts);
             // get users

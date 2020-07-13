@@ -2,7 +2,13 @@
 session_start();
 
 if(!in_array("admin", $_SESSION['roles'])){
-    header("Location:./login/");
+    header("Location:../login/");
+}
+
+if(!isset($_GET['pid'])){
+    header("Location:../posts/");
+}else{
+    $_SESSION['postid'] = ($_GET['pid'])/85;
 }
 
 ?>
@@ -22,8 +28,8 @@ if(!in_array("admin", $_SESSION['roles'])){
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -51,7 +57,7 @@ if(!in_array("admin", $_SESSION['roles'])){
                             <nav class="nav nav-pills nav-fill">
                                 <a class="nav-item nav-link active" href="#" id="show-details">Details</a>
                                 <a class="nav-item nav-link" href="#" id="show-comments">Comments</a>
-                                <a class="nav-item nav-link" href="../blog-details.html">View in blog</a>
+                                <a class="nav-item nav-link" href="../../blog-details/?pid=<?php echo $_GET['pid']?>">View in blog</a>
                                 
                             </nav>
 
@@ -60,8 +66,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                 <div class="card mb-2">
                                     <div class="card-header">
                                         <nav class="nav nav-pills nav-fill">
-                                <a class="nav-item edit" title="Edit" data-toggle="tooltip" href="editPost.php" id=""><i class="material-icons">&#xE254;</i></a>
-                                <a href="#deleteModal" class="nav-item text-danger delete " title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
+                                <a class="nav-item edit" title="Edit" data-toggle="tooltip" href="../edit-post/?pid=<?php echo $_GET['pid']?>" id=""><i class="material-icons">&#xE254;</i></a>
+                                <a href="#deleteModal" data-pid="<?php echo $_SESSION['postid']?>" id="delete-post-button" class="nav-item text-danger delete " title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
                                 
                             </nav>
                                     </div>
@@ -75,13 +81,8 @@ if(!in_array("admin", $_SESSION['roles'])){
       <th scope="col">Status</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>Farming</td>
-      <td>2020/07/03</td>
-      <td>2020/07/04</td>
-      <td>Published</td>
-    </tr>
+  <tbody id="details-tbody">
+    
     
   </tbody>
 </table>
@@ -92,10 +93,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Title
                                     </div>
-                                    <div class="card-body" >
-                                        <p class="card-text">
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, nobis repellat ab tempore voluptatibus, iure tenetur eius voluptates eos, architecto voluptatum libero. Amet, doloremque minima. Officia in temporibus veniam optio!
-                                        </p>
+                                    <div class="card-body" id="title" >
+                                           
                                     </div>
                                 </div>
 
@@ -103,8 +102,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Main Image
                                     </div>
-                                    <div class="card-body">
-                                        <img class="img-fluid" src="../img/hero-17.jpg" alt="">
+                                    <div class="card-body" id="main-image">
+                                        
                                     </div>
                                 </div>
 
@@ -112,9 +111,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Title Details
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="title-details">
                                         
-                                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores inventore quo totam animi reiciendis quisquam excepturi itaque, similique laudantium error! In eaque neque eveniet corporis aspernatur facilis voluptatibus error voluptatum.</p>
                                     </div>
                                 </div>
 
@@ -122,16 +120,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Images
                                     </div>
-                                    <div class="card-body row">
-                                        <div class="col-md-4">
-                                            <img class="img-fluid" src="../img/hero-17.jpg" alt="">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <img class="img-fluid" src="../img/hero-17.jpg" alt="">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <img class="img-fluid" src="../img/hero-17.jpg" alt="">
-                                        </div>
+                                    <div class="card-body row" id="more-images">
+                                        
                                     </div>
                                 </div>
 
@@ -139,11 +129,9 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Description details
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="details-description">
                                         
-                                        <p class="card-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum earum iste animi beatae eius corrupti quibusdam saepe obcaecati cupiditate. Eaque deserunt illum accusamus cupiditate fugit autem enim soluta qui totam.
-                                        </p>
+                                            
                                     </div>
                                 </div>
 
@@ -151,9 +139,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         Quotes
                                     </div>
-                                    <div class="card-body">
-                                        <p class="card-text">John Doe - Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi alias praesentium rem cumque, sint ad, vitae molestiae enim placeat ea doloribus dolorem provident odit tempore neque numquam assumenda. Optio, adipisci!</p>
-                                        <p class="card-text">John Doe - Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi alias praesentium rem cumque, sint ad, vitae molestiae enim placeat ea doloribus dolorem provident odit tempore neque numquam assumenda. Optio, adipisci!</p>
+                                    <div class="card-body" id="quotes">
+                                        
                                     </div>
                                 </div>
 
@@ -161,46 +148,34 @@ if(!in_array("admin", $_SESSION['roles'])){
                                     <div class="card-header">
                                         More Description
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="more-description">
                                         
-                                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo ducimus vel eligendi laborum! Tempore exercitationem voluptatibus ab est dolorem harum rem, doloremque accusantium velit corrupti facere inventore enim. Autem, obcaecati.</p>
                                     </div>
                                 </div>
 
-                                <div class="card mb-2">
+                                <div class="card mb-2" >
                                     <div class="card-header">
                                         Author
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="author">
                                         
-                                        <p class="card-text">John Doe</p>
+                                        
                                     </div>
                                 </div>
 
                             </div>
                             <div id="comments" style="display:none">
-                                <table class="table table-striped">
+                                <table class="table table-striped" id="comments-table">
                                     <thead class="thead-dark">
                                         <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Comment</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                        <th scope="row">1</th>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum obcaecati iusto consequatur! Perspiciatis corrupti sunt obcaecati autem! Natus vitae, deserunt laborum nihil, ut laboriosam facere dignissimos, doloribus vero possimus rerum.</td>
+                                    <tbody id="comments-tbody">
                                         
-                                        <td>Visible</td>
-                                        <td>2020/07/04</td>
-                                        <td>
-                                            <a href="#setingsModal" class="settings" title="more details and settings" data-toggle="modal" data-target="#settingsModal"><i class="material-icons">&#xE8B8;</i></a>
-                                            <a href="#deleteModal" class="delete" title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
-                                        </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -217,6 +192,28 @@ if(!in_array("admin", $_SESSION['roles'])){
                 <!-- footer end -->
             </div>
         </div>
+
+<!-- success modal start -->
+<!-- Modal HTML -->
+<div id="successModal" class="modal fade">
+	<div class="modal-dialog success-modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100">Success!</h4>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center success-modal-text"></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- success modal end -->
 
 
 <!-- Modal HTML -->
@@ -235,13 +232,18 @@ if(!in_array("admin", $_SESSION['roles'])){
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger">Delete</button>
+                <form id="delete-post-form">
+				<button type="submit" class="btn btn-danger">Delete</button>
+                </form>
 			</div>
 		</div>
 	</div>
 </div> 
 
 <!-- confirm delete modal end -->
+
+
+
 
 
 <!-- comment settings modal -->
@@ -252,26 +254,8 @@ if(!in_array("admin", $_SESSION['roles'])){
         <div class="modal-header">
       </div>
 
-      <div class="modal-body">
-          <div class="card">
-              <div class="card-header">
-                Comment Settings
-              </div>
-              <div class="card-body">
-                  <p>Username : Evan</p>
-                  <p>email: evan@mail.com</p>
-                  <p>website: evan.co.ke</p>
-                  <p>status: visible</p>
-                  <p>Date: 2020/07/04</p>
-                  <h5>Comment</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est sed pariatur in. Culpa quae fugit corporis mollitia ullam dolores dicta maiores temporibus recusandae suscipit tempore, officiis vero aliquam non ad.</p>
-              </div>
-              <div class="card-footer d-flex justify-content-around">
-                  <button type="button" class="btn btn-success" title="set visible to users">Show</button>
-                                            <button type="button" class="btn btn-warning" title="hide from users">Hide</button>
-                                            <a href="#deleteModal" class="delete text-danger" title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
-              </div>
-          </div>
+      <div class="modal-body" id="comment-settings-modal">
+          
       </div>
       
 
@@ -280,12 +264,14 @@ if(!in_array("admin", $_SESSION['roles'])){
 </div>
 <!-- comment settings modal end -->
         
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> -->
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../js/post.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script> 
+        <script src="../js/utilities.js"></script>
+      <script src="../js/view-post.js"></script>
     </body>
 </html>

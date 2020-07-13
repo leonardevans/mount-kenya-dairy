@@ -24,15 +24,17 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Password Recovery</h3></div>
                                     <div class="card-body">
-                                        <div class="small mb-3 text-muted">Enter your email address and we will send you a link to reset your password.</div>
-                                        <form>
+                                        <div class="text-danger password-error"></div>
+                                        <div class="small mb-3 text-muted">Enter your email address and we will send you instructions to reset your password.</div>
+                                        <form id="password-form">
+                                            
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" />
+                                                <input class="form-control py-4" id="email" required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$" required aria-describedby="emailHelp" placeholder="Enter email address" />
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="../login/">Return to login</a>
-                                                <a class="btn btn-primary" href="../login/">Reset Password</a>
+                                                <button type="submit" class="btn btn-primary">Reset Password</button>
                                             </div>
                                         </form>
                                     </div>
@@ -55,5 +57,6 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
+        <script src="../js/password.js"></script>
     </body>
 </html>

@@ -134,8 +134,8 @@ class UpdateProfile{
                       data: {
                         key: "update_details",
                         userid: userid,
-                        username: $("#username").val().trim(),
                         firstname: $("#firstname").val().trim(),
+                        username: $("#username").val().trim(),
                         lastname: $("#lastname").val().trim(),
                         website: $("#website").val().trim(),
                         mobile: $("#mobile").val().trim(),
@@ -158,6 +158,7 @@ class UpdateProfile{
                               $(".details-error").css("display", "block");
                           }
                           else if(response == 'error'){
+
                               $(".details-error").text("Error while updating profile!");
                               $(".details-error").css("display", "block");
                           }
@@ -173,6 +174,10 @@ class UpdateProfile{
                       error: (XMLHttpRequest, textStatus, errorThrown) => {
                         if (XMLHttpRequest.readyState == 4) {
                           // HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)
+                          console.log(XMLHttpRequest.statusText);
+                          console.log(XMLHttpRequest.status);
+                          
+                          
                           $(".details-error").text("Error!");
                           $(".details-error").css("display", "block");
                         } else if (XMLHttpRequest.readyState == 0) {

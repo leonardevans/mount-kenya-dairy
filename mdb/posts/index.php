@@ -2,7 +2,7 @@
 session_start();
 
 if(!in_array("admin", $_SESSION['roles'])){
-    header("Location:./login/");
+    header("Location:../login/");
 }
 
 ?>
@@ -52,13 +52,13 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <h4>Posts Management</h4>
                     </div>
                     <div class="col-sm-3">
-                        <a href="./addPost.php" class="btn btn-light"  title="add new product"><i class="fas fa-plus"></i> <span>Add New</span></a>
+                        <a href="../add-post/" class="btn btn-light"  title="add new product"><i class="fas fa-plus"></i> <span>Add New</span></a>
                     </div>
                 </div>
-            <table class="table table-striped table-hover">
+            <table id="posts-table" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Image</th>
                         <th>Title</th>						
                         <th>Category</th>
                         <th>author</th>
@@ -67,24 +67,9 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr >
-                        <td>1</td>
-                        <td>
-                            <img src="../img/user.jpg" class="avatar" alt="Avatar"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis beatae
-                        </td>
-                        <td>Education</td>
-                        <td>John Doe</td>                        
-                        <td>04/10/2013</td>
-                        <td><span class="status text-success">&bull;</span> Published</td>
-                        <td>
-                            <a href="#setingsModal" class="settings" title="Settings" data-toggle="modal" data-target="#settingsModal"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="./post.php" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="./editPost.php" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#deleteModal" class="delete" title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                  
+                <tbody id="posts-tbody">
+                    
+                        
                 </tbody>
             </table>
             
@@ -140,7 +125,9 @@ if(!in_array("admin", $_SESSION['roles'])){
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger">Delete</button>
+                <form id="delete-post-form">
+				<button type="submit" class="btn btn-danger">Delete</button>
+                </form>
 			</div>
 		</div>
 	</div>
@@ -215,7 +202,8 @@ if(!in_array("admin", $_SESSION['roles'])){
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-      
+        <script src="../js/posts.js"></script>
+        <script src="../js/utilities.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         

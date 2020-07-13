@@ -10,14 +10,15 @@
     $(window).on('load', function () {
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
+        // Products.getProducts();
     });
 
     /*------------------
         Background Set
     --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
+    $(".set-bg").each(function () {
+      var bg = $(this).data("setbg");
+      $(this).css("background-image", "url(" + bg + ")");
     });
 
     //Canvas Menu
@@ -40,13 +41,6 @@
         $('.search-model').fadeOut(400, function () {
             $('#search-input').val('');
         });
-    });
-
-    //Masonary
-    $('.gallery').masonry({
-        itemSelector: '.gs-item',
-        columnWidth: '.grid-sizer',
-        gutter: 10
     });
 
     /*------------------
@@ -76,43 +70,31 @@
     });
 
     /*------------------
-        Team Slider/Products
-    --------------------*/
-    $(".ts-slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 3,
-        dots: true,
-        dotsEach: 2,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-            320: {
-                items: 1,
-            },
-            768: {
-                items: 2,
-            },
-            992: {
-                items: 3,
-            }
-        }
-    });
+    //Products Slider
+    // --------------------*/
+    // $(".ts-slider").owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     items: 3,
+    //     dots: true,
+    //     dotsEach: 2,
+    //     smartSpeed: 1200,
+    //     autoHeight: false,
+    //     autoplay: true,
+    //     responsive: {
+    //         320: {
+    //             items: 1,
+    //         },
+    //         768: {
+    //             items: 2,
+    //         },
+    //         992: {
+    //             items: 3,
+    //         }
+    //     }
+    // });
 
     /*------------------
-        Image Popup
-    --------------------*/
-    $('.image-popup').magnificPopup({
-        type: 'image'
-    });
-
-    /*------------------
-        Video Popup
-    --------------------*/
-    $('.video-popup').magnificPopup({
-        type: 'iframe'
-    });
 
     /*------------------
         Barfiller
@@ -130,23 +112,5 @@
         duration: 2000
     });
 
-    $('.table-controls ul li').on('click', function () {
-        var tsfilter = $(this).data('tsfilter');
-        $('.table-controls ul li').removeClass('active');
-        $(this).addClass('active');
-
-        if (tsfilter == 'all') {
-            $('.class-timetable').removeClass('filtering');
-            $('.ts-meta').removeClass('show');
-        } else {
-            $('.class-timetable').addClass('filtering');
-        }
-        $('.ts-meta').each(function () {
-            $(this).removeClass('show');
-            if ($(this).data('tsmeta') == tsfilter) {
-                $(this).addClass('show');
-            }
-        });
-    });
 
 })(jQuery);

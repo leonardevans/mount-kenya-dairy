@@ -97,11 +97,12 @@ if (isset($_POST['key'])) {
         $about = $_POST['about'];
         $mobile = $_POST['mobile'];
 
+
         try {
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql ="SELECT * FROM users WHERE username = '$username'";
-            $users = executor($sql);
+            $sql ="SELECT * FROM users WHERE username = '$username' AND id != $userid";
+            $users = executer($sql);
             if(count($users)>0){
                 exit('username_exist');
             }else{
@@ -119,7 +120,7 @@ if (isset($_POST['key'])) {
                     $sql .= ", about = '$about'";
                 }
                 if($mobile !=  null){
-                    $sql .= ", mobile = $mobile";
+                    $sql .= ", mobile = '$mobile'";
                 }
                 $sql .= " WHERE id = $userid";
                 if(noResultQuery($sql) == 'done'){
@@ -128,28 +129,7 @@ if (isset($_POST['key'])) {
                     exit('error');
                 }
             }
-            $sql = "UPDATE users SET username = '$username'";
-            if($firstname !=  null){
-                $sql .= ", firstname = '$firstname'";
-            }
-            if($lastname !=  null){
-                $sql .= ", lastname = '$lastname'";
-            }
-            if($website !=  null){
-                $sql .= ", website = '$website'";
-            }
-            if($about !=  null){
-                $sql .= ", about = '$about'";
-            }
-            if($mobile !=  null){
-                $sql .= ", mobile = $mobile";
-            }
-            $sql .= " WHERE id = $userid";
-            if(noResultQuery($sql) == 'done'){
-                exit('details_updated');
-            }else{
-                exit('error');
-            }
+            
         } 
         catch (PDOException $e) {
             echo $e->getMessage();

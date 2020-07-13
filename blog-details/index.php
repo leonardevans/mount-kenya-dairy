@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if(!isset($_GET['pid'])){
+    header("Location:../blog/");
+}else{
+    $_SESSION['postid'] = ($_GET['pid'])/85; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -38,21 +44,8 @@ session_start();
     <!-- header end -->
 
     <!-- Blog Details Hero Section Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 p-0 m-auto">
-                    <div class="bh-text">
-                        <h3>Milky cow give us milky yoghurt, milky ghee, maziwa mala.</h3>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                            <li>20 Comment</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section id="blog-hero-section">
+    
     </section>
     <!-- Blog Details Hero Section End -->
 
@@ -62,122 +55,51 @@ session_start();
             <div class="row">
                 <div class="col-lg-8 p-0 m-auto">
                     <div class="blog-details-text">
-                        <div class="blog-details-title">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua accusantium doloremque laudantium. Excepteur
-                                sint occaecat cupidatat non proident sculpa .</p>
-                            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure Lorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat anim id est laborum.</p>
-                            <h5>You Can Buy For Less Than A College Degree</h5>
-                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur officia deserunt mollit.
-                            </p>
+                        <div class="blog-details-title" id="details-title">
+                            
                         </div>
-                        <div class="blog-details-pic">
-                            <div class="blog-details-pic-item">
-                                <img src="img/blog/details/details-1.jpg" alt="">
-                            </div>
-                            <div class="blog-details-pic-item">
-                                <img src="img/blog/details/details-2.jpg" alt="">
-                            </div>
+                        <div class="blog-details-pic" id="blog-more-images">
+                            
 
                         </div>
-                        <div class="blog-details-desc">
-                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
+                        <div class="blog-details-desc" id="details-description">
+                            
                         </div>
-                        <div class="blog-details-quote">
-                            <div class="quote-icon">
-                                <img src="img/blog/details/quote-left.png" alt="">
-                            </div>
-                            <h5>The whole family of tiny legumes, whether red, green, yellow, or black, offers so many
-                                possibilities to create an exciting lunch.</h5>
-                            <span>MEIKE PETERS</span>
+                        <div id="blog-quotes">
+                            
                         </div>
-                        <div class="blog-details-more-desc">
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                                in. . Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
-                            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure Lorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed eiusmod tempor incididunt laboris nisi ut
-                                aliquip commodo consequat. Class aptent taciti sociosqu ad litora torquent per conubia
-                                nostra, per inceptos himenaeos. Mauris vel magna ex. Integer gravida tincidunt accumsan.
-                                Vestibulum nulla mauris, condimentum id felis ac, volutpat volutpat mi qui dolorem.</p>
+                        
+
+                        <div class="blog-details-more-desc" id="more-description">
+                            
                         </div>
-                        <div class="blog-details-author">
-                            <div class="ba-pic">
-                                <img src="img/blog/details/blog-profile.png" alt="">
-                            </div>
-                            <div class="ba-text">
-                                <h5>Author</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation.</p>
-                                <div class="bp-social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                </div>
-                            </div>
+                        <div class="blog-details-author" id="blog-author">
+                            
+                            
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="comment-option">
-                                    <h5 class="co-title">Comment</h5>
-                                    <div class="co-item">
-                                        <div class="co-pic">
-                                            <img src="img/blog/details/comment-1.jpg" alt="">
-                                            <h5>Ronny Karani</h5>
-                                        </div>
-                                        <div class="co-text">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
-                                                adipisci velit dolore.</p>
-                                        </div>
-                                    </div>
-                                    <div class="co-item reply-comment">
-                                        <div class="co-pic">
-                                            <img src="img/blog/details/comment-2.jpg" alt="">
-                                            <h5>De Goku</h5>
-                                        </div>
-                                        <div class="co-text">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
-                                                adipisci velit dolore.</p>
-                                        </div>
-                                    </div>
-                                    <div class="co-item">
-                                        <div class="co-pic">
-                                            <img src="img/blog/details/comment-3.jpg" alt="">
-                                            <h5>Evans</h5>
-                                        </div>
-                                        <div class="co-text">
-                                            <p>Neque porro quisquam est, qui dolorem ipsum dolor sit amet, consectetur,
-                                                adipisci velit dolore.</p>
-                                        </div>
-                                    </div>
+                                <div class="comment-option" id="comments-cont">
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="leave-comment">
                                     <h5>Leave a comment</h5>
-                                    <form action="#">
-                                        <input type="text" placeholder="Name">
-                                        <input type="text" placeholder="Email">
-                                        <input type="text" placeholder="Website">
-                                        <textarea placeholder="Comment"></textarea>
+                                    <p id="comment-result"></p>
+                                    <form action="#" id="comment-form">
+<?php if(!isset($_SESSION['logged_in_userid'])){
+                
+            ?>
+                                        <input type="text" placeholder="Username" name="username" required pattern="[A-Za-z0-9]{3,20}"
+                                                minlength="3"
+                                                maxleghth="20">
+
+                                        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$" name="email" required type="email" placeholder="Email" >
+
+                                        <input type="url" pattern="https?://.+\..+" placeholder="Website" name="website">
+<?php }?>
+                                        <textarea name="comment" placeholder="Comment" required></textarea>
                                         <button type="submit">Submit</button>
                                     </form>
                                 </div>
@@ -221,7 +143,7 @@ session_start();
     <!-- Get In Touch Section End -->
 
     <!-- Footer Section Begin -->
-    <?php include 'footer.php'?>
+    <?php include '../components/footer.php'?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
@@ -234,7 +156,9 @@ session_start();
     <script src="../js/jquery.barfiller.js"></script>
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
+    <script src="../mdb/js/utilities.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/blog-details.js"></script>
 
 
     <script>

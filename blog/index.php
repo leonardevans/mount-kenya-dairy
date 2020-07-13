@@ -59,167 +59,21 @@ session_start();
     <section class="blog-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 p-0">
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="img/hero/hero-2.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <h5><a href="./blog-details.html">Milky cow give us milky yoghurt, milky ghee, maziwa
-                                    mala</a></h5>
-                            <ul>
-                                <li>by Admin</li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua accumsan lacus facilisis.</p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="img/hero/hero-10.jpg" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <h5><a href="./blog-details.html">Milky cow give us milky yoghurt, milky ghee, maziwa
-                                    mala</a></h5>
-                            <ul>
-                                <li>by Admin</li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua accumsan lacus facilisis.</p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="img/hero/hero-11.JPG" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <h5><a href="./blog-details.html">Milky cow give us milky yoghurt, milky ghee, maziwa
-                                    mala</a></h5>
-                            <ul>
-                                <li>by Admin</li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua accumsan lacus facilisis.</p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="img/hero/hero-4.JPG" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <h5><a href="./blog-details.html">Milky cow give us milky yoghurt, milky ghee, maziwa
-                                    mala</a></h5>
-                            <ul>
-                                <li>by Admin</li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua accumsan lacus facilisis.</p>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="bi-pic">
-                            <img src="img/hero/hero-5.JPG" alt="">
-                        </div>
-                        <div class="bi-text">
-                            <h5><a href="./blog-details.html">Milky cow give us milky yoghurt, milky ghee, maziwa
-                                    mala</a></h5>
-                            <ul>
-                                <li>by Admin</li>
-                                <li>Aug,15, 2019</li>
-                                <li>20 Comment</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua accumsan lacus facilisis.</p>
-                        </div>
-                    </div>
-                    <div class="blog-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next</a>
-                    </div>
+                <div class="col-lg-8 p-0" id="posts-container">
+                    
+                    
+               
                 </div>
                 <div class="col-lg-4 col-md-8 p-0">
                     <div class="sidebar-option">
                         <div class="so-categories">
                             <h5 class="title">Categories</h5>
-                            <ul>
-                                <li><a href="#">Milking<span>12</span></a></li>
-                                <li><a href="#">Politics<span>32</span></a></li>
-                                <li><a href="#">Education<span>86</span></a></li>
-                                <li><a href="#">Politics<span>25</span></a></li>
-                                <li><a href="#">Games<span>36</span></a></li>
-                                <li><a href="#">Health<span>15</span></a></li>
+                            <ul id="categories-list">
+                                
                             </ul>
                         </div>
-                        <div class="so-latest">
-                            <h5 class="title">Feature posts</h5>
-                            <div class="latest-large set-bg" data-setbg="img/latest-blog/gallery-2.jpg">
-                                <div class="ll-text">
-                                    <h5><a href="./blog-details.html">How to milk</a></h5>
-                                    <ul>
-                                        <li>Aug 20, 2019</li>
-                                        <li>20 Comment</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="latest-item">
-                                <div class="li-pic">
-                                    <img src="img/hero/hero-1.jpg" alt="">
-                                </div>
-                                <div class="li-text">
-                                    <h6><a href="./blog-details.html">Grilled Potato and Green Bean Salad</a></h6>
-                                    <span class="li-time">Aug 15, 2019</span>
-                                </div>
-                            </div>
-                            <div class="latest-item">
-                                <div class="li-pic">
-                                    <img src="img/hero/hero-10.jpg" alt="">
-                                </div>
-                                <div class="li-text">
-                                    <h6><a href="./blog-details.html">The biggest cow</a></h6>
-                                    <span class="li-time">Aug 15, 2019</span>
-                                </div>
-                            </div>
-                            <div class="latest-item">
-                                <div class="li-pic">
-                                    <img src="img/hero/hero-11.jpg" alt="">
-                                </div>
-                                <div class="li-text">
-                                    <h6><a href="./blog-details.html">Wld largest goat</a></h6>
-                                    <span class="li-time">Aug 15, 2019</span>
-                                </div>
-                            </div>
-                            <div class="latest-item">
-                                <div class="li-pic">
-                                    <img src="img/hero/hero-12.jpg" alt="">
-                                </div>
-                                <div class="li-text">
-                                    <h6><a href="./blog-details.html">The Best Weeknight Baked Potatoes, 3 Creative
-                                            Ways</a></h6>
-                                    <span class="li-time">Aug 15, 2019</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="so-tags">
-                            <h5 class="title">Popular tags</h5>
-                            <a href="#">Milking</a>
-                            <a href="#">Politics</a>
-                            <a href="#">Education</a>
-                            <a href="#">Games</a>
-                            <a href="#">Education</a>
-                            <a href="#">Education</a>
-                            <a href="#">Education</a>
-                            <a href="#">Education</a>
-                        </div>
+
+                        
                     </div>
                 </div>
             </div>
@@ -258,7 +112,7 @@ session_start();
     <!-- Get In Touch Section End -->
 
    <!-- Footer Section Begin -->
-    <?php include 'footer.php'?>
+    <?php include '../components/footer.php'?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
@@ -271,7 +125,9 @@ session_start();
     <script src="../js/jquery.barfiller.js"></script>
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
+    <script src="../mdb/js/utilities.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/blog.js"></script>
 
     <script>
         $(document).ready(()=> {

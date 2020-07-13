@@ -2,7 +2,13 @@
 session_start();
 
 if(!in_array("admin", $_SESSION['roles'])){
-    header("Location:./login/");
+    header("Location:../login/");
+}
+
+if(!isset($_GET['pid'])){
+    header("Location:../posts/");
+}else{
+    $_SESSION['postid'] = ($_GET['pid'])/85;
 }
 
 ?>
@@ -65,7 +71,7 @@ if(!in_array("admin", $_SESSION['roles'])){
             
             <div class="col-md-offset-2">
                 
-                <form action="" method="POST">
+                <form action="" method="POST" id="edit-post-form">
                                                 
                     
                     <div class="card mb-2">
@@ -87,16 +93,11 @@ if(!in_array("admin", $_SESSION['roles'])){
                            <label for="category">Category <span class="require">*</span></label>
                         </div>
                         <div class="card-body row">
-                            <div class="col-md-6 form-group">
-                            <select id="category" class="form-control" name="category">
-                            <option selected>Choose category</option>
-                            <option value="">Education</option>
-                            <option value="">Health</option>
-                            <option value="">Farming</option>
-                        </select>
+                            <div class="col-md-6 form-group " id="categories-cont">
+                            
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="new-category" name="new-category" placeholder="New Category">
+                        <div class="col-md-6 form-group">
+                            <input type="text" class="form-control" id="new-category" minlength="3" name="new-category" placeholder="New Category">
                         </div>
                         </div>
                     </div>
@@ -107,12 +108,12 @@ if(!in_array("admin", $_SESSION['roles'])){
                             <label for="main-image">Main Image <span class="require">*</span></label>
                         </div>
                         <div class="card-body row">
-                            <div class="col-md-6">
-                            <img src="../img/hero-17.jpg" alt="" class="w-100 h-80">
+                            <div class="col-md-6" id="current-main-image">
+                            
                         </div>
                         <div class="form-group col-md-6">
                             <label for="main-image">Replace Image</label>
-                            <input type="file" class="form-control-file" id="main-image" accept="image/*">
+                            <input type="file" class="form-control-file" id="main-image" name="main-image" accept="image/*">
                         </div>
                         </div>
                     </div>
@@ -122,11 +123,9 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <div class="card-header">
                             <label for="title-description">Details title<span class="require">*</span></label>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
+                        <div class="card-body form-group">
                         
                         <textarea rows="5" class="form-control" name="details-title" id="details-title"></textarea>
-                    </div>
                         </div>
                     </div>
 
@@ -134,20 +133,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <div class="card-header">
                             Images (select to delete)
                         </div>
-                        <div class="card-body row">
-                            <div class="form-check col-md-4 mb-2">
-                                <input class="form-check-input" type="checkbox" value="img-id" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <img src="../img/hero-17.jpg" alt="" class="w-100 h-80">
-                                </label>
-                            </div>
-
-                            <div class="form-check col-md-4 mb-2">
-                                <input class="form-check-input" type="checkbox" value="img-id" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <img src="../img/hero-17.jpg" alt="" class="w-100 h-80">
-                                </label>
-                            </div>
+                        <div class="card-body row" id="current-more-images">
+                            
                         </div>
                     </div>
 
@@ -174,11 +161,11 @@ if(!in_array("admin", $_SESSION['roles'])){
                         
                     
 
-                    <div class="form-group card">
+                    <div class=" card">
                         <div class="card-header">
                             <label for="details-description">Details description</label>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body form-group">
 
                             <textarea rows="5" class="form-control" name="details-description" id="details-description" ></textarea>
                         </div>
@@ -188,14 +175,9 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <div class="card-header">
                             quotes (select to delete)
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="current-quotes">
                             
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="id" id="quote-id">
-                                <label class="form-check-label" for="qiote-id"><span class="font-weight-bold">John Doe</span> - 
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita nostrum itaque, est mollitia odio nobis totam commodi aliquam! Tempore quas quam suscipit ea animi sapiente quibusdam, laborum quaerat ad quo! 
-                                </label>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -204,14 +186,8 @@ if(!in_array("admin", $_SESSION['roles'])){
                             Add a quote
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label class="my-1 mr-2" for="quote">Select from existing quotes</label>
-                                <select class="custom-select my-1 mr-sm-2" id="quote">
-                                    <option selected>Select quote</option>
-                                    <option value="1">John doe - voluptatem dolorum excepturi praesentium quam nostrum. Eaque obcaecati vel dolor, corporis illo earum cupiditate eligendi error.</option>
-                                    <option value="2">John Doe - voluptatem dolorum excepturi praesentium quam nostrum. Eaque obcaecati vel dolor, corporis illo earum cupiditate eligendi error. - by John DOe </option>
-                                    <option value="3">John Doe - voluptatem dolorum excepturi praesentium quam nostrum. Eaque obcaecati vel dolor, corporis illo earum cupiditate eligendi error. - by john Doe</option>
-                                </select>
+                            <div class="form-group " id="quotes-cont">
+                                
                             </div>
                             <p>
                                 <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#quoteInput" aria-expanded="false" aria-controls="quoteInput">
@@ -220,14 +196,14 @@ if(!in_array("admin", $_SESSION['roles'])){
                             </p>
                             
                             <div class="collapse jumbotron" id="quoteInput">
-                            <div class="form-group">
-                                <label for="author">Author</label>
-                                 <input class="form-control form-control-sm" name="author" type="text" placeholder="Author">
-                            </div>
-                            <div class="form-group">
-                                <label for="quote">Quote</label>
-                                <textarea rows="1" maxlength="200" class="form-control" name="new-quote" id="new-quote" ></textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="author">Author</label>
+                                        <input class="form-control form-control-sm" id="author" name="author" type="text" placeholder="Author">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quote">Quote</label>
+                                    <textarea rows="1" maxlength="200" class="form-control" name="new-quote" id="new-quote" ></textarea>
+                                </div>
                             </div>
 
                         </div>
@@ -235,7 +211,7 @@ if(!in_array("admin", $_SESSION['roles'])){
 
                     
 
-                    <div class="card">
+                    <div class="card mb-2">
                         <div class="card-header">
                             <label for="details-more-description">Details more description</label>
                         </div>
@@ -249,22 +225,23 @@ if(!in_array("admin", $_SESSION['roles'])){
 
                     <div class="card mb-2">
                         <div class="card-header">
-                            Action
+                            Action`
                         </div>
                         <div class="card-body row">
                             <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="publish" value="published">
-                        <label class="form-check-label" for="publish">Publish</label>
-                        </div>
-                        <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="hide" value="hidden">
-                        <label class="form-check-label" for="hide">hide</label>
-                        </div>
+                            <input class="form-check-input" type="radio" name="status" id="status-published" value="published">
+                            <label class="form-check-label" for="publish" checked>Publish</label>
+                            </div>
+                            <div class="form-check col-md-6">
+                            <input class="form-check-input" type="radio" name="status" id="status-hidden" value="hidden">
+                            <label class="form-check-label" for="hide">hide</label>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <p><span class="require">*</span> - required fields</p>
+                        <div class="text-danger edit-post-error" style="display:none"></div>
                     </div>
                     
                     <div class="form-group">
@@ -290,30 +267,79 @@ if(!in_array("admin", $_SESSION['roles'])){
             </div>
         </div>
 
+<!-- success modal start -->
+<!-- Modal HTML -->
+<div id="successModal" class="modal fade">
+	<div class="modal-dialog success-modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100">Success!</h4>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center success-modal-text"></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- success modal end -->
 
         <script>
         // ckeditor to replace the textareas
 
+            let title;
+            let detailsTitle;
+            let detailsDescription;
+            let detailsMoreDescription;
+            let newQuote;
+
+        ClassicEditor
+            .create( document.querySelector( '#title' ) )
+            
+            .then( editor => {
+            title = editor;
+        } ).
+            catch( error => {
+                console.error( error );
+            } );
+
             ClassicEditor
             .create( document.querySelector( '#details-title' ) )
+            .then( editor => {
+            detailsTitle = editor;
+        } )
             .catch( error => {
                 console.error( error );
             } );
 
             ClassicEditor
             .create( document.querySelector( '#details-description' ) )
+            .then( editor => {
+            detailsDescription = editor;
+        } )
             .catch( error => {
                 console.error( error );
             } );
             
             ClassicEditor
             .create( document.querySelector( '#details-more-description' ) )
+            .then( editor => {
+            detailsMoreDescription = editor;
+        } )
             .catch( error => {
                 console.error( error );
             } );
 
             ClassicEditor
             .create( document.querySelector( '#new-quote' ) )
+            .then( editor => {
+            newQuote = editor;
+        } )
             .catch( error => {
                 console.error( error );
             } );
@@ -323,7 +349,8 @@ if(!in_array("admin", $_SESSION['roles'])){
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-      
+        <script src="../js/utilities.js"></script>
+        <script src="../js/edit-post.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 

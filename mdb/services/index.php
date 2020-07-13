@@ -2,7 +2,7 @@
 session_start();
 
 if(!in_array("admin", $_SESSION['roles'])){
-    header("Location:./login/");
+    header("Location:../login/");
 }
 
 ?>
@@ -71,30 +71,18 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <a href="#addModal" data-toggle="modal" class="btn btn-light"  title="add new service"><i class="fas fa-plus"></i> <span>Add New</span></a>
                     </div>
                     </div>
-                    <table class="table table-striped table-hover">
+                    <table id="services-table" class="table table-striped table-hover">
                                     <thead class="thead-dark">
                                         <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">Image</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Date created</th>
                                         <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                        <th scope="row">1</th>
-                                        <td><img src="../img/hero-17.jpg" class="avatar" alt="Avatar">Milk Processing</td>
+                                    <tbody id="services-tbody">
                                         
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci, quas consequuntur veniam ipsa accusamus fugit minus culpa totam necessitatibus neque tenetur, dolor tempore sed sit officia amet saepe molestias nostrum!</td>
-                                        <td><span class="status text-success">&bull;</span>Visible</td>
-                                        <td>2020/07/04</td>
-                                        <td class="d-flex justify-content-between align-items-center">
-                                            <a href="#editModal" class="edit" title="Edit" data-toggle="modal"><i class="fas fa-pen"></i></a>
-                                            <a href="#deleteModal" class="delete" title="Delete" data-toggle="modal"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                 </div>
@@ -120,45 +108,47 @@ if(!in_array("admin", $_SESSION['roles'])){
 
       <div class="modal-body">
           <div class="card">
-              <form action="">
+              <form action="" id="edit-service-form">
               <div class="card-header bg-primary">
                 Edit Service
               </div>
               <div class="card-body">
                   <div class="form-group">
-                      <label for="product-name">Name</label>
-                      <input id="product-name" class="form-control" type="text" name="product-name">
+                      <label for="service-name">Name</label>
+                      <input id="edit-service-name" class="form-control" type="text" name="service-name" minlength="3" required>
                   </div>
                   <div class="form-group">
                       <label for="description">Description</label>
-                      <textarea id="description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
+                      <textarea id="edit-description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
                   </div>
                   <div class="row mb-2">
                       <div class="col-md-6">
-                          <img class="img-fluid" src="../img/hero-17.jpg" alt="">
+                          <img id="current-service-image" class="img-fluid" src="../img/hero-17.jpg" alt="">
                       </div>
                       <div class="col-md-6 form-group">
-                          <label for="service-image">Replace Image</label>
-                            <input type="file" class="form-control-file" id="service-image" accept="image/*">
+                          <label for="main-image">Replace Image</label>
+                            <input type="file" class="form-control-file" id="service-image" name="service-image" accept="image/*">
                       </div>
                   </div>
                   <label for="">Set status</label>
                   <div class="row">
                             <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="visible" value="visible">
+                        <input class="form-check-input" type="radio" name="status" id="edit-visible" value="visible">
                         <label class="form-check-label" for="visible">Visible</label>
                         </div>
                         <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="hide" value="hidden">
+                        <input class="form-check-input" type="radio" name="status" id="edit-isHidden" value="isHidden">
                         <label class="form-check-label" for="hide">hidden</label>
                         </div>
                         </div>
               </div>
-              <div class="card-footer d-flex justify-content-around">
+              <div class="card-footer row">
+              <div class="text-danger edit-service-error col-sm-12" style="display:none"></div> 
+              <div class=" col-sm-12 d-flex justify-content-around">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-success" title="Update">Update</button>
+                  <button type="submit" class="btn btn-success" title="Update Service">Update Service</button>
                                             
-                                            <a href="#deleteModal" class="delete text-danger" title="Delete" data-toggle="modal"><i class="fas fa-trash"></i></a>
+                                            </div>
                                         </div>
         </form>
           </div>
@@ -170,7 +160,8 @@ if(!in_array("admin", $_SESSION['roles'])){
 </div>
 <!-- edit service modal end -->
 
- <!-- confirm delete Modal HTML -->
+ <!-- confirm delete modal start -->
+<!-- Modal HTML -->
 <div id="deleteModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
@@ -182,11 +173,13 @@ if(!in_array("admin", $_SESSION['roles'])){
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<p>Do you really want to delete this Post? This process cannot be undone.</p>
+				<p>Do you really want to delete this service? This process cannot be undone.</p>
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger">Delete</button>
+                <form id="delete-service-form">
+				<button type="submit" class="btn btn-danger">Delete</button>
+                </form>
 			</div>
 		</div>
 	</div>
@@ -195,7 +188,7 @@ if(!in_array("admin", $_SESSION['roles'])){
 <!-- confirm delete modal end -->
 
 
-<!-- add Product modal -->
+<!-- add Service modal -->
 <div class="modal fade bd-example-modal-xl" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl ">
       
@@ -205,41 +198,43 @@ if(!in_array("admin", $_SESSION['roles'])){
 
       <div class="modal-body">
           <div class="card">
-              <form action="">
+              <form action="" id="add-service-form">
               <div class="card-header bg-primary">
                 Add Service
               </div>
               <div class="card-body">
                   <div class="form-group">
-                      <label for="product-name">Name</label>
-                      <input id="product-name" class="form-control" type="text" name="product-name">
+                      <label for="service-name">Name</label>
+                      <input id="service-name" required class="form-control" minlength="3" type="text" name="service-name">
                   </div>
                   <div class="form-group">
                       <label for="description">Description</label>
-                      <textarea id="description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
+                      <textarea id="add-description" class="form-control" name="description" rows="2" maxlength="150"></textarea>
                   </div>
                       
                       <div class="form-group">
-                          <label for="main-image">Image</label>
-                            <input type="file" class="form-control-file" id="product-image" accept="image/*">
+                          <label for="service-image">Image</label>
+                            <input type="file" class="form-control-file" id="service-image" required name="service-image" accept="image/*">
                       </div>
                   <label for="">Set status</label>
                   <div class="row">
                             <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="visible" value="visible">
+                        <input class="form-check-input" type="radio" name="status" id="visible" value="visible" checked>
                         <label class="form-check-label" for="visible">Visible</label>
                         </div>
                         <div class="form-check col-md-6">
-                        <input class="form-check-input" type="radio" name="status" id="hide" value="hidden">
+                        <input class="form-check-input" type="radio" name="status" id="hide" value="isHidden">
                         <label class="form-check-label" for="hide">hidden</label>
                         </div>
                         </div>
               </div>
-              <div class="card-footer d-flex justify-content-around">
+              <div class="card-footer row">
+              <div class="text-danger add-service-error col-sm-12" style="display:none"></div> 
+              <div class=" col-sm-12 d-flex justify-content-around">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-success" title="Add Product">Add Product</button>
+                  <button type="submit" class="btn btn-success" title="Add Service">Add Service</button>
                                             
-                                            <a href="#deleteModal" class="delete text-danger" title="Delete Product" data-toggle="modal"><i class="fas fa-trash"></i></a>
+                                            </div>
                                         </div>
         </form>
           </div>
@@ -251,30 +246,49 @@ if(!in_array("admin", $_SESSION['roles'])){
 </div>
 <!-- add product modal end -->
 
+<!-- success modal start -->
+<!-- Modal HTML -->
+<div id="successModal" class="modal fade">
+	<div class="modal-dialog success-modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100">Success!</h4>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center success-modal-text"></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- success modal end -->
+
 
         <script>
         // ckeditor to replace the textareas
 
+            let addDescription;
+            let editDescription;
             ClassicEditor
-            .create( document.querySelector( '#details-title' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-            ClassicEditor
-            .create( document.querySelector( '#details-description' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create( document.querySelector( '#add-description' ) )
             
-            ClassicEditor
-            .create( document.querySelector( '#details-more-description' ) )
-            .catch( error => {
+            .then( editor => {
+            addDescription = editor;
+        } ).
+            catch( error => {
                 console.error( error );
             } );
 
             ClassicEditor
-            .create( document.querySelector( '#new-quote' ) )
+            .create( document.querySelector( '#edit-description' ) )
+            .then( editor => {
+            editDescription = editor;
+        } )
             .catch( error => {
                 console.error( error );
             } );
@@ -287,7 +301,8 @@ if(!in_array("admin", $_SESSION['roles'])){
       
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
+        <script src="../js/utilities.js"></script>
+        <script src="../js/services.js"></script>
        
         
         

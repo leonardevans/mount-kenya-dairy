@@ -84,12 +84,24 @@ session_start();
                 </div>
                 <div class="col-lg-6">
                     <div class="leave-comment">
-                        <form action="#">
-                            <input type="text" placeholder="Name">
-                            <input type="text" placeholder="Email">
-                            <input type="text" placeholder="Website">
-                            <textarea placeholder="Message"></textarea>
-                            <button type="submit">Submit</button>
+                        <form action="#" id="contact-form">
+                            <?php if(!isset($_SESSION['logged_in_userid'])){
+                
+            ?>
+                                        <input type="text" placeholder="Username" name="username" required 
+                                                minlength="3"
+                                                maxleghth="20">
+
+                                        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$" name="email" required type="email" placeholder="Email" >
+
+                                        <input type="url" pattern="https?://.+\..+" placeholder="Website" name="website">
+<?php }?>
+<input type="text" placeholder="Subject" name="subject" required 
+                                                minlength="3"
+                                                maxleghth="20">
+                            <textarea required placeholder="Message" name="message"></textarea>
+                            <button type="submit">Send Message</button>
+                            <div class="text-success contact-result"></div>
                         </form>
                     </div>
                 </div>
@@ -147,7 +159,8 @@ session_start();
     <script src="../js/jquery.barfiller.js"></script>
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>    
+    <script src="../js/main.js"></script>  
+    <script src="../js/contact.js"></script>    
 
     <script>
         $(document).ready(()=> {

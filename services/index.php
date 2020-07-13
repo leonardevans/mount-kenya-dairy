@@ -70,8 +70,8 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 card bg-transparent text-white">
+        <div class="row" id="services-container">
+            <!-- <div class="col-md-6 card bg-transparent text-white">
                 <div class="card-header">Milk Processing</div>
                 <div class="row card-body">
                     <div class="col-md-6">
@@ -83,8 +83,8 @@ session_start();
                             section for more details .</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 card bg-transparent text-white">
+            </div> -->
+            <!-- <div class="col-md-6 card bg-transparent text-white">
                 <div class="card-header">Delivery</div>
                 <div class="row card-body">
                     <div class="col-md-6">
@@ -96,7 +96,7 @@ session_start();
                             Contact details provided.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
             
             
@@ -151,6 +151,8 @@ session_start();
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../mdb/js/utilities.js"></script>
+    <script src="../js/services.js"></script>
     
 
     <script>

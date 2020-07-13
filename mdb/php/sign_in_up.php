@@ -25,7 +25,7 @@ if (isset($_POST['key'])) {
                         if (noResultQuery($sql) == 'done') {
                             $sql = "SELECT * FROM users WHERE email='$email' AND username='$username'";
                             $users = executer($sql);
-                            $userid= $users[0][id];
+                            $userid= $users[0]['id'];
                             $sql = "INSERT INTO roles (userid, role) VALUES ($userid, 'user')";
                             if(noResultQuery($sql) == 'done'){
                                 $sql = "INSERT INTO socialnetwork (userid, facebook, instagram, youtube, googleplus, twitter) VALUES ($userid, null, null, null, null, null)";

@@ -8,6 +8,8 @@ class Dashboard{
                 key: "get_details",                
             },
             success: function (response) {
+              // console.log(response);
+              
                 let data = JSON.parse(response);
                 $('.users-value').text(data.users);
                 $(".posts-value").text(data.posts);

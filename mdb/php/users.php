@@ -35,7 +35,7 @@ if (isset($_POST['key'])) {
 
                     $sql = "SELECT role FROM roles WHERE userid = ".$user['id']."";
                     $roles= executer($sql);
-                    $response .='<td>';
+                    $response .='<td id="roles-'.$user['id'].'">';
                     for ($i=0; $i < count($roles); $i++) { 
                         if($i>0){
                             $response .= ', '.$roles[$i]['role'];
@@ -46,10 +46,12 @@ if (isset($_POST['key'])) {
                     }
                    
                     $response .= '</td>';
-                    $response .= '<td>'.$user['status'].'</td>';
+                    $response .= '<td id="status-'.$user['id'].'">'.$user['status'].'</td>';
                     $response .= '
                     <td>
-                        <a href="#setingsModal" class="settings" title="Settings" data-userid="'.$user['id'].'" data-toggle="modal" data-target="#settingsModal"><i class="material-icons">&#xE8B8;</i></a>
+                        <a href="#setingsModal" class="settings" title="Settings" data-toggle="modal" 
+                        data-userid="'.$user['id'].'"
+                        data-target="#settingsModal"><i class="material-icons">&#xE8B8;</i></a>
                         <a href="#deleteModal" class="delete" 
                         onclick="Users.deleteUser('.$user['id'].')"
                         title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
@@ -93,6 +95,53 @@ if (isset($_POST['key'])) {
                     }
 
                 }
+            }else{
+                exit('failed');
+            }
+        }
+    }elseif(($_POST['key'] == "delete_user")){
+        $userid = $_POST['userid'];
+        if($_SESSION['logged_in_userid'] == $userid){
+            exit('on_session');
+        }
+        else{
+            $sql = "DELETE FROM users WHERE id = $userid";
+        if(noResultQuery($sql) == 'done'){
+            exit('user_deleted');
+        }else{
+            exit('failed');
+        }
+        }
+    }
+    elseif(($_POST['key'] == "update_user")){
+        $userid = $_POST['userid'];
+        $admin = $_POST['admin'];
+        $status = $_POST['status'];
+        if($_SESSION['logged_in_userid'] == $userid){
+            exit('on_session');
+        }
+        else{
+            $sql = "UPDATE users SET status = '$status' WHERE id = $userid";
+            if(noResultQuery($sql)== 'done'){
+                if($admin == 1){
+                    $sql = "SELECT * FROM roles WHERE userid = $userid AND role ='admin' ";
+                    $users = executer($sql);
+                    if(count($users) <= 0){
+
+                        $sql = "INSERT INTO roles (userid, role) VALUES ($userid, 'admin')";
+                        $result= noResultQuery($sql);
+                    }
+                }else{
+                    $sql = "DELETE from roles WHERE userid = $userid AND role = 'admin'";
+                    $result = noResultQuery($sql);
+                }
+                $sql = "SELECT role FROM roles WHERE userid = $userid ";
+                $roles = executer($sql);
+                $response = array();
+                foreach ($roles as $role) {
+                    array_push($response, $role['role']);
+                }
+                exit(json_encode($response));
             }else{
                 exit('failed');
             }

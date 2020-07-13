@@ -330,57 +330,8 @@ if(!isset($_SESSION['logged_in_username'])){
                 </div>
             </div>
             <div class="row">
-                <div class="ts-slider owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/products/whole-milk.jpg">
-                            <div class="ts_text">
-                                <h4>Whole Milk</h4>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti
-                                    pariatur necessitatibus natus.
-                                    Porro tempora debitis deleniti laborum optio tenetur facilis cum, illo aliquid
-                                    beatae ullam nam doloremque,
-                                    quibusdam excepturi.</span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/products/yoghurt.jpg">
-                            <div class="ts_text">
-                                <h4>Yoghurt</h4>
-                                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, soluta.
-                                    Consequatur, deserunt minima
-                                    aliquid facere iste dolor </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/products/ghee.jpg">
-                            <div class="ts_text">
-                                <h4>Ghee</h4>
-                                <span>Lorem ipsum dolor sit amet consectetur corporis tenetur sint atque voluptatem
-                                    ullam!</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/products/maziwa-mala.jpg">
-                            <div class="ts_text">
-                                <h4>Maziwa Mala</h4>
-                                <span> reprehenderit earum corrupti ipsam omnis? Debitis eveniet cumque quaerat
-                                    recusandae cum, rem quae!</span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/products/butter.png">
-                            <div class="ts_text">
-                                <h4>Butter</h4>
-                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="ts-slider owl-carousel" id="products-container">
+                    
                     <div class="col-lg-4">
                         <div class="ts-item set-bg" data-setbg="img/products/milk2.jpg">
                             <div class="ts_text">
@@ -488,14 +439,18 @@ if(!isset($_SESSION['logged_in_username'])){
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
+    
+
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/masonry.pkgd.min.js"></script>
     <script src="js/jquery.barfiller.js"></script>
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="./mdb/js/utilities.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="js/main.js"></script>
 
     <script>
         $(document).ready(()=> {

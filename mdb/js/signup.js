@@ -99,7 +99,7 @@ class SignUp {
                   } else if (data == "created") {
                     window.location.href = "../login/";
                   } else {
-                    errors.innerHTML = data;
+                    errors.innerHTML = 'Error while trying to sign up.';
                     errors.style.display = "block";
                   }
                 },

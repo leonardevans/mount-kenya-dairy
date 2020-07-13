@@ -79,6 +79,13 @@ hr {
   overflow: visible;
 }
 
+.avatar{
+  height:50px;
+  width:auto;
+  max-width: 50px;
+  max-height: 50px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;

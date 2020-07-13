@@ -261,6 +261,8 @@ ol {
 }
 
 .logo img, #avatar{
+	width: auto;
+	height: 50px;
 	max-width: 50px;
 	max-height: 50px;
 }
@@ -1074,6 +1076,13 @@ ol {
 	line-height: 28px;
 }
 
+.blog-item .bi-text h5 p {
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: 600;
+	line-height: 28px;
+}
+
 .blog-item .bi-text ul {
 	margin-bottom: 18px;
 }
@@ -1151,6 +1160,14 @@ ol {
 }
 
 .bh-text h3 {
+	color: #ffffff;
+	font-weight: 600;
+	line-height: 39px;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+.bh-text h3 p{
 	color: #ffffff;
 	font-weight: 600;
 	line-height: 39px;

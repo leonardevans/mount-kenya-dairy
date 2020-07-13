@@ -45,7 +45,7 @@ class Login {
                 "Your account has been suspended! To activate your account, please <a href='../../contact/'>contact us</a> with a request to activate your account.";
               errors.style.display = "block";
             } else {
-              errors.innerHTML = data;
+              errors.innerHTML = 'Error while trying to login';
               errors.style.display = "block";
               console.log(data);
             }

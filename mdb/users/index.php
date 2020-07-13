@@ -54,7 +54,7 @@ if(!in_array("admin", $_SESSION['roles'])){
             <table class="table table-striped table-hover" id="users-table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Avatar</th>
                         <th>Username</th>				
                         <th>Date Created</th>
                         <th>Roles</th>
@@ -156,18 +156,18 @@ if(!in_array("admin", $_SESSION['roles'])){
         </button>
       </div>
       <div class="modal-body add-user-body">
-        <form action="">
+        <form action="" id="edit-user-form">
             <fieldset class="form-group card mb-2">
             <label for="" class="card-header"> Status</label>
                 <div class="row card-body">
                     <div class="form-check col-sm-6">
-                    <input class="form-check-input" type="radio" name="status" id="activate" value="active" checked>
+                    <input class="form-check-input" type="radio" name="status" id="update-activate" value="active">
                     <label class="form-check-label" for="activate">
                         Activate
                     </label>
                     </div>
                     <div class="form-check col-sm-6">
-                    <input class="form-check-input" type="radio" name="status" id="suspend" value="suspended">
+                    <input class="form-check-input" type="radio" name="status" id="update-suspend" value="suspended">
                     <label class="form-check-label" for="suspend">
                         Suspend
                     </label>
@@ -186,18 +186,20 @@ if(!in_array("admin", $_SESSION['roles'])){
                 </label>
                 </div>
                 <div class="form-check col-md-6">
-                    <input class="form-check-input" type="checkbox" value="admin" id="admin">
+                    <input class="form-check-input" type="checkbox" value="admin" id="update-admin">
                 <label class="form-check-label" for="admin">
                     Admin
                 </label>
                 </div>
             </div>
 </div>
-                </form>
       </div>
       <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" >Update</button>
+        <input type="hidden" id="userid" >
+        <button type="submit" class="btn btn-primary" >Update</button>
+                </form>
+
       </div>
     </div>
   </div>
@@ -222,7 +224,9 @@ if(!in_array("admin", $_SESSION['roles'])){
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger">Delete</button>
+                <form id="delete-user-form">
+				<button type="submit" class="btn btn-danger">Delete</button>
+                </form>
 			</div>
 		</div>
 	</div>
@@ -242,7 +246,7 @@ if(!in_array("admin", $_SESSION['roles'])){
 				<h4 class="modal-title w-100">Success!</h4>	
 			</div>
 			<div class="modal-body">
-				<p class="text-center success-modal-text">Item Deleted Successfully</p>
+				<p class="text-center success-modal-text"></p>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
