@@ -97,7 +97,7 @@ if(!in_array("admin", $_SESSION['roles'])){
 				<h4 class="modal-title w-100">Success!</h4>	
 			</div>
 			<div class="modal-body">
-				<p class="text-center">Item Deleted Successfully</p>
+				<p class="text-center success-modal-text">Item Deleted Successfully</p>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
@@ -146,23 +146,23 @@ if(!in_array("admin", $_SESSION['roles'])){
         </button>
       </div>
       <div class="modal-body">
-<form action="">
+<form action="" id="set-post-form">
 <div class="card">
     <div class="card-header">
         Post Settings
     </div>
-    <div class="card-body">
+    <div class="card-body" >
                 <div class="card mb-2">
                     <label for="" class="card-header">Status</label>
                 <div class="card-body row">
                     <div class="form-check col-md-6">
-                    <input class="form-check-input" type="radio" name="status" id="publish" value="published" checked>
+                    <input class="form-check-input" type="radio" name="status" id="post-published" value="published">
                     <label class="form-check-label" for="publish">
                         Publish
                     </label>
                     </div>
                     <div class="form-check col-md-6">
-                    <input class="form-check-input" type="radio" name="status" id="hide" value="hidden">
+                    <input class="form-check-input" type="radio" name="status" id="post-hidden" value="hidden">
                     <label class="form-check-label" for="hide">
                         Hide
                     </label>
@@ -171,21 +171,15 @@ if(!in_array("admin", $_SESSION['roles'])){
                 </div>
                 </div>
 
-            <div class="card">
-                <label class="card-header" for="category">Category</label>
-                <div class="form-group card-body">
-                    <select class="custom-select my-1 mr-sm-2" id="category">
-                        <option selected>Health</option>
-                        <option value="1">Education</option>
-                        <option value="2">Farming</option>
-                        <option value="3">Milk</option>
-                    </select>
-                </div>
+            <div class="card" id="post-category">
+                
             </div>
+    <div class="set-post-error"></div>
     </div>
     <div class="card-footer justify-content-between">
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" >Update</button>
+        <button type="submit" class="btn btn-primary" >Update</button>
       </div>
 </div>
 

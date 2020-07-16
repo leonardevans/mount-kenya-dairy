@@ -144,6 +144,34 @@ if (isset($_POST['key'])) {
                 exit(json_encode($response));
             }
             
+        }elseif($_POST['key'] == "get_post_details"){
+            $postid = $_POST['postid'];
+            $sql = "SELECT * FROM posts WHERE id = $postid";
+            $posts = executer($sql);
+            $post = $posts[0];
+            $status = $post['status'];
+            // get categories
+                $sql = "SELECT * FROM categories";
+            $categories = executer($sql);
+            $cats= '<label class="card-header">Category</label><div class="card-body"><select id="category" class="form-control" name="category"><option value="">Select category--</option>';
+            foreach ($categories as $category ) {
+                if($category['id'] == $post['category']){
+                    $cats .= '<option value="'.$category['id'].'" selected>'.$category['name'].'</option>';
+                }else{
+                $cats .= '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+                }
+            }
+            $cats.='</select></div>';
+            $response = array('categories'=> $cats, 'status'=> $status);
+            exit(json_encode($response));
+        }elseif($_POST['key'] == "update_post"){
+            $status = $_POST['status'];
+            $category = $_POST['category'];
+            $postid = $_POST['postid'];
+            $sql = "UPDATE posts SET category = $category, `status`= '$status' WHERE id = $postid";
+            if(noResultQuery($sql) == 'done'){
+                exit('post_updated');
+            }
         }
     } 
     catch (PDOException $e) {

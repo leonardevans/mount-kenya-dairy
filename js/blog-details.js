@@ -59,6 +59,11 @@ class BlogDetails {
             contentType: false,
             cache: false,
             processData: false,
+            beforeSend: ()=>{
+              $("#comment-result").html(
+                '<span class="text-primary">Posting comment</p>'
+              );
+            },
             success: function (response) {
               if (response == "comment_posted") {
                 $("#comment-result").html(

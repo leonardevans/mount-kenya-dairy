@@ -45,7 +45,7 @@ session_start();
                     <div class="breadcrumb-text">
                         <h2>Contact Us</h2>
                         <div class="bt-option">
-                            <a href="./index.php">Home</a>
+                            <a href="../">Home</a>
                             <span>Contact us</span>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 class Services {
   static getServices(start, limit) {
     if (start <= 1) {
-      $("#services-tbody").empty();
+      $("#services-tbody").html('');
     }
     $.ajax({
       url: "../php/services.php",
@@ -53,9 +53,13 @@ console.log(form_data);
         contentType: false,
         cache: false,
         processData: false,
+        beforeSend: ()=>{
+          $(".add-service-error").html('<p class="text-primary">Adding service...</p>');
+          $(".add-service-error").css("display", "block");
+        },
         success: function (response) {
           if (response == "service_added") {
-            $(".success-modal-text").text("Service added successfully");
+            $(".success-modal-text").html("Service added successfully");
             $("#addModal").modal("hide");
             $(".add-service-error").hide();
             $("#add-service-form").trigger("reset");
@@ -66,15 +70,15 @@ console.log(form_data);
 
             Services.getServices(0, 10);
           } else if (response == "name_exist") {
-            $(".add-service-error").text("Service name exist.");
+            $(".add-service-error").html("Service name exist.");
             $(".add-service-error").css("display", "block");
           } else if (response == "failed") {
-            $(".add-service-error").text("Error while adding service");
+            $(".add-service-error").html("Error while adding service");
             $(".add-service-error").css("display", "block");
           } else {
             console.log(response);
 
-            $(".add-service-error").text("Unknown Error.");
+            $(".add-service-error").html("Unknown Error.");
             $(".add-service-error").css("display", "block");
           }
         },
@@ -114,25 +118,29 @@ console.log(form_data);
         contentType: false,
         cache: false,
         processData: false,
+        beforeSend: ()=>{
+          $(".edit-service-error").html('<p class="text-primary">Updating service</p>');
+          $(".edit-service-error").show();
+        },
         success: function (response) {
           if (response === "service_updated") {
             $(".success-modal-text").text("Service updated successfully.");
             $("#editModal").modal("hide");
             $("#successModal").modal("show");
             $("#services-tbody").html("<div></div>");
-            editDescription.setData("<p></p>");
+            editDescription.setData("");
             $("#edit-service-form").trigger("reset");
             Services.getServices(0, 10);
           } else if (response === "name_exist") {
-            $(".edit-service-error").text("Service Name exist.");
+            $(".edit-service-error").html("Service Name exist.");
             $(".edit-service-error").show();
           } else if (response === "failed") {
-            $(".edit-service-error").text("Error while updating service");
+            $(".edit-service-error").html("Error while updating service");
             $(".edit-service-error").show();
           } else {
             console.log(response);
 
-            $(".edit-service-error").text("Unknown Error.");
+            $(".edit-service-error").html("Unknown Error.");
             $(".edit-service-error").css("display", "block");
           }
         },

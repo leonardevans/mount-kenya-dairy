@@ -7,6 +7,11 @@ class Services {
         key: "get_services",
       },
       dataType: "text",
+      beforeSend: ()=>{
+        $("#services-container").html(
+          "<h2 class='text-primary mb-2'>Fetching services...</h2>"
+        );
+      },
       success: function (response) {
         // console.log(response);
 

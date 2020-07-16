@@ -29,7 +29,7 @@
                                              <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Username</label>
                                                 <input class="form-control py-4" id="username" type="text" 
-                                                pattern="[A-Za-z0-9]{8,20}"
+                                                pattern="[A-Za-z0-9]{3,20}"
                                                 minlength="3"
                                                 maxleghth="20"
                                                 placeholder="Enter Username" />

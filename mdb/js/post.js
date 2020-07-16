@@ -89,10 +89,10 @@ class Post {
           cache: false,
           processData: false,
           beforeSend: () => {
-            $(".edit-post-error").html(
+            $(".add-post-error").html(
               "<p class='text-primary'>Adding post...</p>"
             );
-            $(".edit-post-error").show();
+            $(".add-post-error").show();
           },
           success: function (response) {
             if (Utils.isJSON(response)) {

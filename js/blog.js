@@ -8,6 +8,11 @@ class Blog{
             category: category,
           },
           dataType: "text",
+          beforeSend: ()=>{
+            $("#posts-container").html(
+              "<h2 class='text-white mb-2'>Fetching posts...</h2>"
+            );
+          },
           success: function (response) {
               if(Utils.isJSON(response)){
                   let data = JSON.parse(response);

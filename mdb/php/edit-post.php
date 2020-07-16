@@ -27,9 +27,10 @@ if (isset($_POST['key'])) {
             foreach ($categories as $category ) {
                 if($category['id'] == $post['category']){
                     $cats .= '<option value="'.$category['id'].'" selected>'.$category['name'].'</option>';
-                break;
+                }else{
+
+                    $cats .= '<option value="'.$category['id'].'">'.$category['name'].'</option>';
                 }
-                $cats .= '<option value="'.$category['id'].'">'.$category['name'].'</option>';
             }
             $cats.='</select>';
                     

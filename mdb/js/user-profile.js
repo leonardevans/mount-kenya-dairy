@@ -75,7 +75,7 @@ class UpdateProfile{
                         newPassword: newPassword.value.trim(),
                       },
                       beforeSend: () => {
-                          passwordErrors.innerHTML = "<p class='text-success'>changing password</p>";
+                          passwordErrors.innerHTML = "<p class='text-primary'>changing password...</p>";
                           passwordErrors.style.display = "block";
                       },
                       success: (response) => {
@@ -143,7 +143,7 @@ class UpdateProfile{
                       },
                       beforeSend: () => {
                         $(".details-error").html(
-                          "<p class='text-success'>Updating profile</p>"
+                          "<p class='text-primary'>Updating profile...</p>"
                         );
                         $(".details-error").css("display", "block");
                       },
@@ -219,7 +219,7 @@ class UpdateProfile{
               },
               beforeSend: () => {
                 $(".social-error").html(
-                  "<p class='text-success'>Updating social links</p>"
+                  "<p class='text-primary'>Updating social links...</p>"
                 );
                 $(".social-error").css("display", "block");
               },
@@ -272,7 +272,7 @@ class UpdateProfile{
             processData: false,
             beforeSend: () => {
               $(".picture-error").html(
-                '<p class="text-primary">Uploading image</p>'
+                '<p class="text-primary">Uploading image...</p>'
               );
                 $(".picture-error").css("display", "block");
             },
@@ -323,7 +323,7 @@ class UpdateProfile{
           },
           beforeSend: () => {
             $(".remove-picture-error").html(
-              '<p class="text-primary">Removing profile Picture</p>'
+              '<p class="text-primary">Removing profile Picture...</p>'
             );
             $(".remove-picture-error").css("display", "block");
           },

@@ -9,6 +9,11 @@ window.addEventListener("DOMContentLoaded", () => {
       contentType: false,
       cache: false,
       processData: false,
+      beforeSend: ()=>{
+        $(".contact-result").html(
+          '<span class="text-primary">Sending message...</p>'
+        );
+      },
       success: function (response) {
         if (response == "message_sent") {
           $(".contact-result").html(

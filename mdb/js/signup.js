@@ -22,7 +22,7 @@ class SignUp {
   }
 
   validatePassword(password, confirmPassword) {
-    if (password.length >= 8) {
+    if (password.length >= 3) {
       errors.style.display = "none";
       let upperCases = 0;
       let numbers = 0;

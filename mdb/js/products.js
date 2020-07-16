@@ -1,7 +1,7 @@
 class Products {
   static getProducts(start, limit) {
     if(start <= 1){
-      $("#products-tbody").empty();
+      $("#products-tbody").html('');
     }
     $.ajax({
       url: "../php/products.php",
@@ -11,6 +11,9 @@ class Products {
         key: "get_products",
         start: start,
         limit: limit,
+      },
+      beforeSend:()=>{
+
       },
       success: function (response) {
         if (response != "no_more") {
@@ -53,28 +56,32 @@ class Products {
         contentType: false,
         cache: false,
         processData: false,
+        beforeSend: () => {
+          $(".add-product-error").html('<p class="text-primary">Adding product...</p>');
+          $(".add-product-error").css("display", "block");
+        },
         success: function (response) {
           if (response == "product_added") {
             $(".success-modal-text").text("Product added successfully");
             $("#addModal").modal("hide");
             $(".add-product-error").hide();
             $("#add-product-form").trigger("reset");
-    addDescription.setData("<p></p>");
+            addDescription.setData("<p></p>");
 
             $("#successModal").modal("show");
             $("#products-tbody").html("<div></div>");
-            
+
             Products.getProducts(0, 10);
           } else if (response == "name_exist") {
-            $(".add-product-error").text("Product Name exist.");
+            $(".add-product-error").html("Product Name exist.");
             $(".add-product-error").css("display", "block");
           } else if (response == "failed") {
-            $(".add-product-error").text("Error while adding product");
+            $(".add-product-error").html("Error while adding product");
             $(".add-product-error").css("display", "block");
           } else {
             console.log(response);
-            
-            $(".add-product-error").text("Unknown Error.");
+
+            $(".add-product-error").html("Unknown Error.");
             $(".add-product-error").css("display", "block");
           }
         },
@@ -115,6 +122,12 @@ class Products {
         contentType: false,
         cache: false,
         processData: false,
+        beforeSend: () => {
+          $(".edit-product-error").html(
+            '<p class="text-primary">Updating product...</p>'
+          );
+          $(".edit-product-error").css("display", "block");
+        },
         success: function (response) {
           if (response === "product_updated") {
             $(".success-modal-text").text("Product updated successfully");
@@ -125,15 +138,15 @@ class Products {
             $("#edit-product-form").trigger("reset");
             Products.getProducts(0, 10);
           } else if (response === "name_exist") {
-            $(".edit-product-error").text("Product Name exist.");
+            $(".edit-product-error").html("Product Name exist.");
             $(".edit-product-error").show();
           } else if (response === "failed") {
-            $(".edit-product-error").text("Error while updating product");
+            $(".edit-product-error").html("Error while updating product");
             $(".edit-product-error").show();
           } else {
             console.log(response);
-            
-            $(".edit-product-error").text("Unknown Error.");
+
+            $(".edit-product-error").html("Unknown Error.");
             $(".edit-product-error").css("display", "block");
           }
         },

@@ -52,9 +52,13 @@ class Users {
             username: $("#username").val(),
             admin: admin,
           },
+          beforeSend: ()=>{
+            $(".add-user-error").html('<p class="text-primary">Adding user...</p>');
+            $(".add-user-error").css("display", "block");
+          },
           success: function (response) {
             if (response == "exist") {
-              $(".add-user-error").text("Email or username exist");
+              $(".add-user-error").html("Email or username exist");
               $(".add-user-error").css("display", "block");
             } else if (response == "user_added") {
 
@@ -67,7 +71,7 @@ class Users {
             } else {
               console.log(response);
 
-              $(".add-user-error").text("Error while creating user");
+              $(".add-user-error").html("Error while creating user");
               $(".add-user-error").css("display", "block");
             }
           },

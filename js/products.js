@@ -7,6 +7,9 @@ class Products {
         key: "get_products",
       },
       dataType: "text",
+      beforeSend: ()=>{
+        $("#products-container").html('<p class="text-primary">Fetching products...</p>');
+      },
       success: function (response) {
           console.log(response);
           
