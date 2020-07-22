@@ -71,7 +71,7 @@ if(!isset($_GET['pid'])){
                                 
                             </nav>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body table-responsive-md">
                                         <table class="table">
   <thead>
     <tr>
@@ -164,7 +164,7 @@ if(!isset($_GET['pid'])){
                                 </div>
 
                             </div>
-                            <div id="comments" style="display:none">
+                            <div id="comments" class="table-responsive-md" style="display:none">
                                 <table class="table table-striped" id="comments-table">
                                     <thead class="thead-dark">
                                         <tr>

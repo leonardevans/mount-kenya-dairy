@@ -71,20 +71,23 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <a href="#addModal" data-toggle="modal" class="btn btn-light"  title="add new service"><i class="fas fa-plus"></i> <span>Add New</span></a>
                     </div>
                     </div>
-                    <table id="services-table" class="table table-striped table-hover">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Date created</th>
-                                        <th scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="services-tbody">
-                                        
-                                    </tbody>
-                                </table>
+                    <div class="table-responsive-md">
+                    
+                        <table id="services-table" class="table table-striped table-hover">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Date created</th>
+                                            <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="services-tbody">
+                                            
+                                        </tbody>
+                                    </table>
+                    </div>
                 </div>
                        
                         

@@ -55,23 +55,26 @@ if(!in_array("admin", $_SESSION['roles'])){
                         <a href="../add-post/" class="btn btn-light"  title="add new product"><i class="fas fa-plus"></i> <span>Add New</span></a>
                     </div>
                 </div>
-            <table id="posts-table" class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>						
-                        <th>Category</th>
-                        <th>author</th>
-                        <th>Date Created</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="posts-tbody">
-                    
-                        
-                </tbody>
-            </table>
+                <div class="table-responsive-md">
+                
+                    <table id="posts-table" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>						
+                                <th>Category</th>
+                                <th>author</th>
+                                <th>Date Created</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="posts-tbody">
+                            
+                                
+                        </tbody>
+                    </table>
+                </div>
             
         </div>
                        

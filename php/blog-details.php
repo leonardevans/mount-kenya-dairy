@@ -112,7 +112,7 @@ if (isset($_POST['key'])) {
                                 $blogauthor .= '<a href="'.$socialnetwork['instagram'].'"><i class="fa fa-instagram"></i></a>';
                             }
                             if(!empty($socialnetwork['youtube'])){
-                                $blogauthor .= '<a href="'.$socialnetwork['youtube'].'"><i class="fa fa-youtub-play"></i></a>';
+                                $blogauthor .= '<a href="'.$socialnetwork['youtube'].'"><i class="fa fa-youtube-play"></i></a>';
                             }
                             $blogauthor .='</div>
                             </div>';

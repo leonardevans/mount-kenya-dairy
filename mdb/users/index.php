@@ -51,21 +51,23 @@ if(!in_array("admin", $_SESSION['roles'])){
                         						
                     </div>
                 </div>
-            <table class="table table-striped table-hover" id="users-table">
-                <thead>
-                    <tr>
-                        <th>Avatar</th>
-                        <th>Username</th>				
-                        <th>Date Created</th>
-                        <th>Roles</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="users-tbody">
-                    
-                </tbody>
-            </table>
+                <div class="table-responsive-md">
+                <table class="table table-striped table-hover" id="users-table">
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>Username</th>				
+                            <th>Date Created</th>
+                            <th>Roles</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-tbody">
+                        
+                    </tbody>
+                </table>
+                </div>
             
         </div>
                        
